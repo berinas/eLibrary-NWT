@@ -1,0 +1,27 @@
+package etf.unsa.ba.User;
+
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+
+@SpringBootApplication
+public class UserApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(UserApplication.class, args);
+	}
+	
+	@Bean
+	public CommandLineRunner add_users(UserRepository userRepository) {
+		return (args) -> {
+			// save a couple of customers
+			userRepository.save(new User("Ekrem","Hasanovic","ekremh@gmail.com"));
+			userRepository.save(new User("Berina","Smajovic", "berinas@gmail.com"));
+			userRepository.save(new User("Jasmina","Celigija", "jasminac@gmail.com"));
+
+		};
+	}
+	
+
+}

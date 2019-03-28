@@ -1,0 +1,53 @@
+package etf.unsa.ba.User;
+
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+
+@SpringBootApplication
+public class UserApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(UserApplication.class, args);
+	}
+	
+	@Bean
+	public CommandLineRunner add_users(UserRepository userRepository, UserAccountRepository userAccountRepository) {
+		return (args) -> {
+			// save a couple of customers
+			User ekrem = new User("Ekrem","Hasanovic","ekremh@gmail.com");
+			User berina = new User("Berina","Smajovic", "berinas@gmail.com");
+			User jasmina = new User("Jasmina","Celigija", "jasminac@gmail.com");
+			UserAccount eAccount = new UserAccount("ekrem", "123");
+			UserAccount bAccount = new UserAccount("berina", "123");
+			UserAccount jAccount = new UserAccount("jasmina", "123");
+			
+			ekrem.setUserAccount(eAccount);
+			eAccount.setUser(ekrem);
+			berina.setUserAccount(bAccount);
+			bAccount.setUser(berina);
+			jasmina.setUserAccount(jAccount);
+			jAccount.setUser(jasmina);
+			
+			userRepository.save(ekrem);
+			userRepository.save(berina);
+			userRepository.save(jasmina);
+			userAccountRepository.save(eAccount);
+			userAccountRepository.save(bAccount);
+			userAccountRepository.save(jAccount);
+			
+			/*
+			userRepository.save(new User("Ekrem","Hasanovic","ekremh@gmail.com"));
+			userRepository.save(new User("Berina","Smajovic", "berinas@gmail.com"));
+			userRepository.save(new User("Jasmina","Celigija", "jasminac@gmail.com"));
+
+			userAccountRepository.save(new UserAccount("ekrem", "123"));
+			userAccountRepository.save(new UserAccount("berina", "456"));
+			userAccountRepository.save(new UserAccount("jasmina", "789"));*/
+			
+		};
+	}
+	
+
+}

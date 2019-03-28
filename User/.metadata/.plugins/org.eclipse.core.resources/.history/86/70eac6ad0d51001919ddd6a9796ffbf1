@@ -1,0 +1,9 @@
+package etf.unsa.ba.User.Repositories;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import etf.unsa.ba.User.Entities.UserAccount;
+
+public interface UserAccountRepository extends JpaRepository<UserAccount, Long> {
+
+}
