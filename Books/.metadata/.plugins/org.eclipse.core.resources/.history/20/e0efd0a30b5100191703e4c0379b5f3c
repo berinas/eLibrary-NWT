@@ -1,0 +1,53 @@
+package etf.unsa.ba.Books;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+@EnableAutoConfiguration
+public class BooksApplication implements CommandLineRunner {
+
+	@Autowired 
+	UserRepository userRepository; 
+	@Autowired
+	BookRepository bookRepository;
+	
+	
+	public static void main(String[] args) {
+		SpringApplication.run(BooksApplication.class, args);
+	}
+	
+	
+	@Override
+	public void run(String... arg0) throws Exception {
+	
+		User user = new User("User 1");
+		userRepository.save(user);
+		Book book1 = new Book("Book 1");
+		bookRepository.save(book1);
+		
+		
+		Optional<Book> savedBookOptional = bookRepository.findById(book1.getId());
+		Optional<User> savedUserOptional = userRepository.findById(user.getId());
+		
+		Book savedBook = savedBookOptional.get();
+		User savedUser = savedUserOptional.get();
+		
+		savedBook.getUsersWishList().add(savedUser);
+		
+		savedUser.getBooksWishList().add(savedBook);
+		
+		bookRepository.save(savedBook);
+		
+		
+	}
+	
+	
+	
+
+}

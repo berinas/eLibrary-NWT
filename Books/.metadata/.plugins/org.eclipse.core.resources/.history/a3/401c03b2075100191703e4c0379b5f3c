@@ -1,0 +1,5 @@
+package etf.unsa.ba.Books;
+
+public interface UserRepository {
+
+}

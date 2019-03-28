@@ -1,0 +1,11 @@
+package etf.unsa.ba.Books;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import etf.unsa.ba.Books.User;
+
+@Repository
+public interface UserRepository extends JpaRepository<User, Long>{
+
+}
