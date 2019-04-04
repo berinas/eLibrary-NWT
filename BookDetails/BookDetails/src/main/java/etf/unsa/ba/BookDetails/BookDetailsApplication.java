@@ -9,7 +9,9 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import etf.unsa.ba.BookDetails.Entities.Author;
 import etf.unsa.ba.BookDetails.Entities.Book;
+import etf.unsa.ba.BookDetails.Repositories.AuthorRepository;
 import etf.unsa.ba.BookDetails.Repositories.BookDetailsRepository;
 
 @SpringBootApplication
@@ -18,6 +20,8 @@ public class BookDetailsApplication implements CommandLineRunner {
 
 	@Autowired
 	BookDetailsRepository bookDetailsRepository;
+	@Autowired
+	AuthorRepository authorRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(BookDetailsApplication.class, args);
@@ -27,7 +31,7 @@ public class BookDetailsApplication implements CommandLineRunner {
 	public void run(String... arg0) throws Exception {
 	
 		bookDetailsRepository.save(new Book("title", "desc", "eng", new Date()));
-				
+		authorRepository.save(new Author("autor1", "autor11"));
 		
 	}
 

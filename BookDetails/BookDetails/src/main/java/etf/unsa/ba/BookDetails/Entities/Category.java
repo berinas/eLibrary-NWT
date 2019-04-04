@@ -21,6 +21,14 @@ public class Category {
 	private List<Section> sections; 
 	
 	protected Category() {}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
 	
 
 }
