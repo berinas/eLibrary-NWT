@@ -1,0 +1,16 @@
+package etf.unsa.ba.Books.Controllers;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import etf.unsa.ba.Books.Entities.User;
+
+@FeignClient(name="user-service" )
+public interface UserServiceProxy {
+
+	@GetMapping("/users/{username}")
+	public User getUserByUsernameAndPassword(@PathVariable(value="username") String username);
+	//@RequestMapping("/users/test")
+	//public List<String> test();
+	
+}

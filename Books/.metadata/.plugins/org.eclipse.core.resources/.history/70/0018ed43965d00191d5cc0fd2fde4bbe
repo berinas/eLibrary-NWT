@@ -1,0 +1,19 @@
+package etf.unsa.ba.Books.Entities;
+
+import javax.persistence.Entity;
+@Entity
+public class UserAccount {
+	
+	
+	private String username;
+	private String password;
+
+	
+	public UserAccount(String username, String password) {
+		super();
+		this.username = username;
+		this.password = password; 
+	}
+
+	
+}

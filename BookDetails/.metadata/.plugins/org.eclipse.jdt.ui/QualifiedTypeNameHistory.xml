@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="java.sql.Date"/>
+<fullyQualifiedTypeName name="javax.persistence.Table"/>
+<fullyQualifiedTypeName name="javax.persistence.Id"/>
+<fullyQualifiedTypeName name="org.apache.catalina.realm.JNDIRealm.User"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="org.springframework.boot.CommandLineRunner"/>
+<fullyQualifiedTypeName name="javax.persistence.ManyToMany"/>
+<fullyQualifiedTypeName name="javax.persistence.Entity"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="org.springframework.http.HttpStatus"/>
+<fullyQualifiedTypeName name="com.google.api.services.drive.model.File"/>
+<fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
+<fullyQualifiedTypeName name="org.hibernate.annotations.common.util.impl.LoggerFactory"/>
+<fullyQualifiedTypeName name="ch.qos.logback.classic.Logger"/>
+<fullyQualifiedTypeName name="org.springframework.context.support.PropertySourcesPlaceholderConfigurer"/>
+<fullyQualifiedTypeName name="org.springframework.beans.factory.config.YamlPropertiesFactoryBean"/>
+<fullyQualifiedTypeName name="org.springframework.context.annotation.Primary"/>
+<fullyQualifiedTypeName name="org.springframework.core.io.ClassPathResource"/>
+<fullyQualifiedTypeName name="etf.unsa.ba.BookDetails.Services.GoogleDriveService"/>
+<fullyQualifiedTypeName name="etf.unsa.ba.BookDetails.Entities.BookContent"/>
+<fullyQualifiedTypeName name="etf.unsa.ba.BookDetails.Repositories.BookContentRepository"/>
+<fullyQualifiedTypeName name="javax.persistence.CascadeType"/>
+<fullyQualifiedTypeName name="java.util.Map"/>
+<fullyQualifiedTypeName name="etf.unsa.ba.BookDetails.Repositories.SectionRepository"/>
+<fullyQualifiedTypeName name="etf.unsa.ba.BookDetails.Repositories.CategoryRepository"/>
+<fullyQualifiedTypeName name="etf.unsa.ba.BookDetails.Entities.Section.SectionType"/>
+<fullyQualifiedTypeName name="etf.unsa.ba.BookDetails.Entities.Section"/>
+<fullyQualifiedTypeName name="com.google.api.client.repackaged.com.google.common.base.Optional"/>
+<fullyQualifiedTypeName name="com.google.common.base.Optional"/>
+<fullyQualifiedTypeName name="etf.unsa.ba.BookDetails.Entities.Category.BookCategory"/>
+<fullyQualifiedTypeName name="etf.unsa.ba.BookDetails.Entities.Category"/>
+<fullyQualifiedTypeName name="java.util.Optional"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+</qualifiedTypeNameHistroy>
