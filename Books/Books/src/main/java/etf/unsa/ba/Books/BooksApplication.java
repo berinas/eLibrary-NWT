@@ -46,7 +46,7 @@ public class BooksApplication implements CommandLineRunner {
 		userRepository.save(new User("User 1", "aaaaa")); // ovo cemo kasnije dobavljati iz User serisa
 		userRepository.save(new User("User 2", "bbbbb"));
 		userRepository.save(new User("User 3", "ccccc"));
-		bookRepository.save(new Book("Book 1"));
+		bookRepository.save(new Book("History Book"));
 		bookRepository.save(new Book("Book 2"));
 	}
 	
