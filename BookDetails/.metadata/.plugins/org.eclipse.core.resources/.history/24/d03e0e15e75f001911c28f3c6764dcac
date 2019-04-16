@@ -1,0 +1,29 @@
+package etf.unsa.ba.BookDetails.Controllers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.stream.annotation.EnableBinding;
+import org.springframework.integration.support.MessageBuilder;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import etf.unsa.ba.BookDetails.BookRegistrationSource;
+import etf.unsa.ba.BookDetails.Entities.BookDetailsRequestBody;
+
+
+@RestController
+@EnableBinding(BookRegistrationSource.class)
+public class BookRegistrationController {
+
+	@Autowired
+	BookRegistrationSource bookRegistrationSource;
+
+	@RequestMapping("/register")
+	@ResponseBody
+	public String orderFood(@RequestBody BookDetailsRequestBody requestBody) {
+		bookRegistrationSource.bookRegistration().send(MessageBuilder.withPayload(requestBody.getBook()).build());
+		System.out.println(requestBody.getBook().toString());
+		return "Book Registered";
+	}
+}

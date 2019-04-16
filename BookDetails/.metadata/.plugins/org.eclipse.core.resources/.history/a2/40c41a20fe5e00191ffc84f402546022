@@ -1,0 +1,13 @@
+package etf.unsa.ba.BookDetails.Entities;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class BookDetailsRequestBody {
+	
+	Book book; 
+	List<Author> authors = new ArrayList<Author>(); 
+	Section section; 
+	Category category; 
+	Publisher publisher;
+}

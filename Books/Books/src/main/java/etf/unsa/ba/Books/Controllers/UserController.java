@@ -36,104 +36,86 @@ import etf.unsa.ba.Books.Entities.User;
 import etf.unsa.ba.Books.Entities.UserAccount;
 import etf.unsa.ba.Books.Entities.UserInfo;
 import etf.unsa.ba.Books.Repositories.BookRepository;
+import etf.unsa.ba.Books.Services.BookDetailsServiceProxy;
+import etf.unsa.ba.Books.Services.UserService;
+import etf.unsa.ba.Books.Services.UserServiceProxy;
 
 @RestController
 public class UserController {
 
+	private User user = new User(); 
 	@Autowired
-	private BookRepository bookRepository;
-	
-	
+    private UserService userService;
 	@Autowired
 	private DiscoveryClient discoveryClient;
-	@Autowired 
-	private EurekaClient eurekaClient;
 	@Autowired
-    RestTemplate restTemplate;
+	private UserServiceProxy userServiceProxy;
 	@Autowired
 	private BookDetailsServiceProxy bookDetailsServiceProxy; 
-	@Autowired
-	private UserServiceProxy userServiceProxy; 
-  
-	
-	 @RequestMapping("/service-instances/{applicationName}")
-	    public List<ServiceInstance> serviceInstancesByApplicationName(
-	            @PathVariable String applicationName) {
-	        return this.discoveryClient.getInstances(applicationName);
-	    }
-	 
+ 
 
-		@GetMapping("/test")
-		public BookDetails proba() {
-			return bookDetailsServiceProxy.test();
-			//String result = restTemplate.getForObject("http://book-details-service/test", String.class);
-			
-			//return result; 
-		}
-		
-
-		@PostMapping("/users/login")
-		public UserInfo getUserByUsernameAndPassword(@RequestBody UserAccount userAccount) {
-			return userServiceProxy.getUserByUsernameAndPassword(userAccount);
-		}
-		
-	 
-		@GetMapping("/books/{bookId}")
-		public BookDetails getBookDetails(@PathVariable Long bookId) {
-			return bookDetailsServiceProxy.getBookDetails(bookId);
-			//String result = restTemplate.getForObject("http://book-details-service/test", String.class);
-			
-			//return result; 
-		}
-		
-		
-	 /*
 	
-	 @RequestMapping(value = "/proba", method = RequestMethod.GET)
-	 public String getEmployee() {
+	public UserController(UserService userService){
+        this.userService = userService;
+    }
+	
+	
+	@RequestMapping("/service-instances/{applicationName}")
+    public List<ServiceInstance> serviceInstancesByApplicationName(
+            @PathVariable String applicationName) {
+        return this.discoveryClient.getInstances(applicationName);
+    }
+	
+
+
+	@PostMapping("/users/login")
+	public UserInfo getUserByUsernameAndPassword(@RequestBody UserAccount userAccount) {
+		UserInfo userInfo = userServiceProxy.getUserByUsernameAndPassword(userAccount);
+		user.setUsername(userInfo.getUsername());
+		user.setPassword(userInfo.getPassword());
+		return userInfo; 
+	}
 		
-		 ResponseEntity<String> response = restTemplate.exchange("http://book-details-service/proba", HttpMethod.GET, null, String.class);
-		 String result = response.getBody();
-		 }
-	 */
-	 
-		/*
-	@GetMapping("/users/{userId}/wishlist")
-	public List<Book> getWishList(@PathVariable Long userId){
-		
-		Optional<UserAccount> userOptional = userAccountRepository.findById(userId);
-		
-		if (!userOptional.isPresent()) 
-			//throw new UserNotFoundException("id:" + knjigaId);
-			return null;
-		
-		return userOptional.get().getBooksWishList();
-		
+ 
+	@GetMapping("/user/wishlist")
+	public List<Book> getWishList(){
+		return user.getBooksWishList();
 	}
 	
-	
-	@PostMapping("/users/{userId}/wishlist/{bookId}")
-	public void addBookToWishList(@PathVariable("userId") Long userId, @PathVariable("bookId") Long bookId){
-		
-		Optional<UserAccount> userOptional = userAccountRepository.findById(userId);
-		
-		//if (!userOptional.isPresent()) 
-			//throw new UserNotFoundException("id:" + knjigaId);
-			//return null;
-		
-		UserAccount user = userOptional.get();
-		
-		Optional<Book> bookOptional = bookRepository.findById(bookId);
-		Book book = bookOptional.get();
-		
-		book.getUsersWishList().add(user);
-		
-		user.getBooksWishList().add(book);
-		
-		bookRepository.save(book);
-		
+	@GetMapping("/user/reading")
+	public List<Book> getReadingList(){
+		return user.getBooksReading();
 	}
-	*/
 	
+	@GetMapping("/user/read")
+	public List<Book> getReadList(){
+		return user.getBooksRead();
+	}
+	
+	@GetMapping("/books/{bookId}")
+	public BookDetails getBookDetails(@PathVariable("bookId") Long bookId){
+		BookDetails bookDetails = bookDetailsServiceProxy.getBookDetailsById(bookId);
+		return 	bookDetails;
+	}
+	
+	@GetMapping("/user/wishlist/{bookId}")
+	public BookDetails getBookDetailsFromWishList(@PathVariable("bookId") Long bookId){
+		return bookDetailsServiceProxy.getBookDetailsById(bookId);
+	}
+	
+	@PostMapping("/user/wishlist/{bookId}")
+	public Book addBookToWishList(@PathVariable("bookId") Long bookId){
+		return userService.addBookToWishList(bookId, user);		
+	}
+	
+	@PostMapping("/user/reading/{bookId}")
+	public Book addBookToReadingList(@PathVariable("bookId") Long bookId){
+		return userService.addBookToReadingList(bookId, user);		
+	}
+	
+	@PostMapping("/user/read/{bookId}")
+	public Book addBookToReadList(@PathVariable("bookId") Long bookId){
+		return userService.addBookToReadList(bookId, user);		
+	}
 	
 }

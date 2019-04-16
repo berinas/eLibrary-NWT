@@ -1,5 +1,6 @@
 package etf.unsa.ba.Books.Entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -24,7 +25,7 @@ public class User {
 	
 	@ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name="USER_BOOK_WISHLIST", joinColumns = {@JoinColumn(name="USER_ID")}, inverseJoinColumns= {@JoinColumn(name="BOOK_ID")})
-	private List<Book> booksWishList;
+	private List<Book> booksWishList = new ArrayList<Book>();;
 	
 	
 	@ManyToMany(cascade = CascadeType.PERSIST)
@@ -37,7 +38,7 @@ public class User {
 	
 	
 	
-	protected User() {
+	public User() {
 		
 	}
 	
@@ -45,6 +46,7 @@ public class User {
 		super();
 		this.username = username;
 		this.password = password; 
+		this.booksWishList = new ArrayList<Book>();
 	}
 
 	public Long getId() {

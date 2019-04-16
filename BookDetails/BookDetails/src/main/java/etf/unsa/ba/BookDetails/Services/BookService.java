@@ -14,6 +14,7 @@ import etf.unsa.ba.BookDetails.Entities.Book;
 import etf.unsa.ba.BookDetails.Entities.BookContent;
 import etf.unsa.ba.BookDetails.Entities.Category;
 import etf.unsa.ba.BookDetails.Entities.Category.BookCategory;
+import etf.unsa.ba.BookDetails.Entities.Publisher;
 import etf.unsa.ba.BookDetails.Entities.Section;
 import etf.unsa.ba.BookDetails.Entities.Section.SectionType;
 import etf.unsa.ba.BookDetails.Exceptions.EntryNotFoundException;
@@ -21,6 +22,7 @@ import etf.unsa.ba.BookDetails.Repositories.AuthorRepository;
 import etf.unsa.ba.BookDetails.Repositories.BookContentRepository;
 import etf.unsa.ba.BookDetails.Repositories.BookRepository;
 import etf.unsa.ba.BookDetails.Repositories.CategoryRepository;
+import etf.unsa.ba.BookDetails.Repositories.PublisherRepository;
 import etf.unsa.ba.BookDetails.Repositories.SectionRepository;
 import javassist.NotFoundException;
 
@@ -36,23 +38,25 @@ public class BookService {
 	@Autowired
 	CategoryRepository categoryRepository;
 	@Autowired
+	PublisherRepository publisherRepository;
+	@Autowired
 	BookContentRepository bookContentRepository;
 	@Autowired
-	GoogleDriveService googleDriveService;
+	GoogleDriveService driveService;
 	
 	@Autowired
 	public BookService(BookRepository bookRepository,
 					   AuthorRepository authorRepository,
 					   SectionRepository sectionRepository,
 					   CategoryRepository categoryRepository,
-					   BookContentRepository bookContentRepository
-					   ) {
-		this.bookRepository = bookRepository;
-		this.authorRepository = authorRepository;
-		this.sectionRepository = sectionRepository;
-		this.categoryRepository = categoryRepository; 
-		this.bookContentRepository = bookContentRepository; 
-		//this.googleDriveService = googleDriveService;
+					   PublisherRepository publisherRepository,
+					   BookContentRepository bookContentRepository) {
+			this.bookRepository = bookRepository;
+			this.authorRepository = authorRepository;
+			this.sectionRepository = sectionRepository;
+			this.categoryRepository = categoryRepository; 
+			this.publisherRepository = publisherRepository; 
+			this.bookContentRepository = bookContentRepository; 
 	}
 	
 	
@@ -79,21 +83,21 @@ public class BookService {
 	
 	public List<Book> findBooksBySection(SectionType section){
 		
-		Optional<Section> sectionOptional = sectionRepository.findBySection(section);
-		if (!sectionOptional.isPresent()) 
+		Section sectionOptional = sectionRepository.findBySection(section);
+		if(sectionOptional == null) 
 			throw new EntryNotFoundException("Section does not exists.");
 		
-		return sectionOptional.get().getBooks();
+		return sectionOptional.getBooks();
 	}
 	
 
 	public List<Book> findBooksByCategory(BookCategory category) {
 		
-		Optional<Category> categoryOptional = categoryRepository.findByCategory(category);
-		if (!categoryOptional.isPresent()) 
+		Category categoryOptional = categoryRepository.findByCategory(category);
+		 if (categoryOptional == null) 
 			throw new EntryNotFoundException("Category does not exists.");
 		
-		return categoryOptional.get().getBooks();
+		return categoryOptional.getBooks();
 	}
 
 	
@@ -107,21 +111,32 @@ public class BookService {
 		
 	}
 	
-	public Book addBook(Book book) {
-	
-		//File file = new File("C:\\Users\\PC\\Desktop\\Projektni zadatak.pdf");
-		//com.google.api.services.drive.model.File file2  = googleDriveService.upLoadFile(book.getId(), file.getAbsolutePath(),"application/pdf");
-		/*try {
-			System.err.println(file2.toPrettyString());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}*/
-	
+	public Book addBook(Book book, List<Author> authors, 
+						Section section,Category category, 
+						Publisher publisher) {
+		
+		//vrsta i kategorija se ne unose rucno nego se izaberu neke od vec postojecih iz baze
+		book.setSection(sectionRepository.findBySection(section.getSection()));
+		book.setCategory(categoryRepository.findByCategory(category.getCategory()));
+		
+		Optional<Publisher> publisherOptional = publisherRepository.findByName(publisher.getName());
+		if(!publisherOptional.isPresent())
+			publisherRepository.save(publisher);
+
+		book.setPublisher(publisherOptional.get());
+		book.setAuthors(authors);
+		
 		BookContent bookContent = new BookContent(book);
 		book.setBookContent(bookContent);
 		Book saved = bookRepository.save(book);
 		bookContentRepository.save(bookContent);
+		
+		File file = new File("C:\\Users\\PC\\Desktop\\pz.pdf");
+		driveService.upLoadFile(saved.getId(), file.getAbsolutePath(),"application/pdf");
+		
+		
 		return saved;
+		
 	
 	}
 	
@@ -151,5 +166,4 @@ public class BookService {
 	}
 
 
-	
 }

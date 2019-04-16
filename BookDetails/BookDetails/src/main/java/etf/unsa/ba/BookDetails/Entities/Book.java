@@ -1,7 +1,10 @@
 package etf.unsa.ba.BookDetails.Entities;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -17,7 +20,10 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+
+//@JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
 @Table(name = "BOOKS")
 public class Book {
@@ -61,6 +67,8 @@ public class Book {
 		this.description = description;
 		this.language = language;
 		this.published = published;
+		//this.authors = (List<Author>) Stream.of(authors).collect(Collectors.toSet());
+        //this.authors.forEach(x -> x.getBooks().add(this));
 	}
 
 	public Long getId() {
@@ -139,4 +147,7 @@ public class Book {
 		this.authors = authors;
 	} 
 	
+	public void addAuthor(Author author) {
+		this.authors.add(author);
+	}
 }

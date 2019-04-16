@@ -1,0 +1,13 @@
+package etf.unsa.ba.Books.Services;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import etf.unsa.ba.Books.Entities.BookDetails;
+
+@FeignClient(name="book-details-service" )
+public class BookServiceProxy {
+
+	@GetMapping("/books/{bookId}")
+	public BookDetails getBookDetailsById(Long bookId);
+}

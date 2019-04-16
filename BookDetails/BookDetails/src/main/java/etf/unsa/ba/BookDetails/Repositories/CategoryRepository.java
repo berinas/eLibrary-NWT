@@ -11,5 +11,5 @@ import etf.unsa.ba.BookDetails.Entities.Category.BookCategory;
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, Long> {
 	
-	public Optional<Category> findByCategory(BookCategory bookCategory);
+	public Category findByCategory(BookCategory bookCategory);
 }

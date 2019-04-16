@@ -1,0 +1,9 @@
+package etf.unsa.ba.BookDetails;
+
+import org.springframework.cloud.stream.annotation.Output;
+
+public interface BookRegistrationSource {
+
+	@Output("bookRegistrationChannel")
+	MessageChannel bookRegistration();
+}

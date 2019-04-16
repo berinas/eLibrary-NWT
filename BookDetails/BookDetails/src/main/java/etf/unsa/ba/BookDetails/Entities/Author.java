@@ -59,4 +59,9 @@ public class Author {
 	public Integer getId() {
 		return id;
 	}
+	
+	public void addNewBook(Book book) {
+		this.books.add(book);
+	}
+	
 }

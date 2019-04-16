@@ -1,6 +1,7 @@
 package etf.unsa.ba.Books.Entities;
 
 import java.util.Date;
+import java.util.List;
 
 public class BookDetails {
 
@@ -10,15 +11,21 @@ public class BookDetails {
 	private String language; 
 	private Date published; 
 	
-
+	private Publisher publisher; 
+	//private Section section; 
+	//private Category category; 
+	//private List<Author> authors;
+	
 	protected BookDetails() { }
 	
-	public BookDetails(String title, String description, String language, Date published) {
+	public BookDetails(String title, String description, String language, Date published,
+					   Publisher publisher) {
 		super();
 		this.title = title;
 		this.description = description;
 		this.language = language;
 		this.published = published;
+		this.publisher = publisher; 
 	}
 
 	public Long getId() {
@@ -60,7 +67,15 @@ public class BookDetails {
 	public void setPublished(Date published) {
 		this.published = published;
 	}
-	
+
+	public Publisher getPublisher() {
+		return publisher;
+	}
+
+	public void setPublisher(Publisher publisher) {
+		this.publisher = publisher;
+	}
+
 	
 	
 }

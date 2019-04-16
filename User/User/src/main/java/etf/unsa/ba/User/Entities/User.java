@@ -48,7 +48,7 @@ public class User {
 	
 	@NotNull
 	@NotBlank(message = "Password is required.")
-	@Size(min=8, max=30, message="Password should have at least {min} characters")
+	@Size(min=8, max=100, message="Password should have at least {min} characters")
 	private String password;	
 
 	@ManyToOne(fetch=FetchType.LAZY)

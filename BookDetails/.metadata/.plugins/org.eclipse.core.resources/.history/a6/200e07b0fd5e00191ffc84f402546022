@@ -1,0 +1,5 @@
+package etf.unsa.ba.BookDetails.Entities;
+
+public class BookDetailsRequestBody {
+
+}

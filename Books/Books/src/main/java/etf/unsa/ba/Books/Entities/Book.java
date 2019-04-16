@@ -1,5 +1,6 @@
 package etf.unsa.ba.Books.Entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -8,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -19,11 +19,9 @@ public class Book {
 	private Long id; 
 	private String title;
 	
-	
-
 	@ManyToMany(mappedBy="booksWishList", cascade = CascadeType.PERSIST)
 	@JsonIgnore
-	private List<User> usersWishList;
+	private List<User> usersWishList = new ArrayList<User>();
 	
 	
 	@ManyToMany(mappedBy="booksReading", cascade = CascadeType.PERSIST)
@@ -36,9 +34,7 @@ public class Book {
 	private List<User> usersRead;
 	
 	
-	protected Book() {
-		
-	}
+	protected Book() {}
 	
 	public Book(String title) {
 		super();
@@ -81,7 +77,4 @@ public class Book {
 		this.usersRead = usersRead;
 	}
 
-	
-	
-	
 }
