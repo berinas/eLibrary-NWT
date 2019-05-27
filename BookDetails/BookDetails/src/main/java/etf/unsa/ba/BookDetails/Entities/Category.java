@@ -1,6 +1,9 @@
 package etf.unsa.ba.BookDetails.Entities;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -41,8 +44,10 @@ public class Category {
 	
 	protected Category() {}
 	
-	public Category(BookCategory category) {
+	public Category(BookCategory category, Book ...books) {
 		this.category = category;
+		this.books = Stream.of(books).collect(Collectors.toList());
+        this.books.forEach(x -> x.setCategory(this));
 	}
 
 	public BookCategory getCategory() {

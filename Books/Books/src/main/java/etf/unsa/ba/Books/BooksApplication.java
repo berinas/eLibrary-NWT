@@ -43,7 +43,7 @@ public class BooksApplication implements CommandLineRunner {
 	@Override
 	public void run(String... arg0) throws Exception {
 	
-		userRepository.save(new User("User 1", "aaaaa")); // ovo cemo kasnije dobavljati iz User serisa
+		userRepository.save(new User("User 1", "aaaaa"));
 		userRepository.save(new User("User 2", "bbbbb"));
 		userRepository.save(new User("User 3", "ccccc"));
 		bookRepository.save(new Book("History Book"));

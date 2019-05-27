@@ -12,6 +12,7 @@
 	</section>
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="C:\Users\PC\Desktop\eLibrary-NWT\Books"/>
 			<item value="C:\Users\PC\Desktop\Books"/>
 		</list>
 		<list key="projectNameTemplate">

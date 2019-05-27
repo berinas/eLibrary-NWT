@@ -2,6 +2,7 @@ package etf.unsa.ba.BookDetails.Controllers;
 
 
 import java.util.List;
+import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -49,8 +50,7 @@ public class BookController {
 	public List<Book> getAllBooks() {
 		return bookService.findAll();
 	}
-	
-	
+
 	@GetMapping("/books/{bookId}")
 	public Book getBookDetailsById(@PathVariable Long bookId){
 		return bookService.findBookById(bookId);		
@@ -83,23 +83,29 @@ public class BookController {
             throw new Exception(errors.getAllErrors().get(0).getDefaultMessage());
         }
     
-        Book saved = bookService.addBook(requestBody.getBook(),requestBody.getAuthors(),requestBody.getSection(),requestBody.getCategory(),requestBody.getPublisher());
+        Book saved = bookService.addBook(requestBody.getBook(), requestBody.getAuthors(),requestBody.getSection(),requestBody.getCategory(),requestBody.getPublisher());
         bookRegistrationSource.bookRegistration().send(MessageBuilder.withPayload(saved).build());
 		System.out.println(saved.toString());
 		return saved;
 	}
 	
-	 @PutMapping("/books/update/{id}")
-	    public Book updateBook(@PathVariable(value = "id") Long id, @RequestBody @Valid Book bookUpdate, Errors errors) throws NotFoundException, Exception {
-		 if(errors.hasErrors()){
-	            throw new Exception(errors.getAllErrors().get(0).getDefaultMessage());
-	        }	
-		 return bookService.updateBook(id, bookUpdate);
-	    }
-	 
-	 @DeleteMapping("/books/delete/{id}")
-	    public ResponseEntity<?> deleteBook(@PathVariable(value = "id") Long id) throws NotFoundException {
-	        return bookService.deleteBook(id);
-	    }
+	@PutMapping("/books/update/{id}")
+    public Book updateBook(@PathVariable(value = "id") Long id, @RequestBody @Valid Book bookUpdate, Errors errors) throws NotFoundException, Exception {
+	 if(errors.hasErrors()){
+            throw new Exception(errors.getAllErrors().get(0).getDefaultMessage());
+        }	
+	 return bookService.updateBook(id, bookUpdate);
+    }
+	
+
+	@DeleteMapping("/books/delete/{id}")
+    public ResponseEntity<?> deleteBook(@PathVariable(value = "id") Long id) throws NotFoundException {
+        return bookService.deleteBook(id);
+    }
+	
+	@DeleteMapping("/books/delete-all")
+    public ResponseEntity<?> deleteAllBooks() throws NotFoundException {
+        return bookService.deleteAllBooks();
+    }
 
 }

@@ -1,9 +1,0 @@
-package etf.unsa.ba.BookDetails.Services;
-
-import com.google.api.services.drive.model.File;
-
-public interface GoogleDriveService {
-
-	public File upLoadFile(String fileName,String filePath,String mimeType);
-
-}

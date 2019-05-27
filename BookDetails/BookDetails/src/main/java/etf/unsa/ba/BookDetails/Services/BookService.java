@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -71,7 +72,9 @@ public class BookService {
 		
 		if (!optionalBook.isPresent()) 
 			throw new EntryNotFoundException("Book with given id not found");
-	
+		
+		System.out.println("**************BOOOKO CONTENT: " + optionalBook.get().getCategory().getCategory());
+		
 		return optionalBook.get();
 	}
 	
@@ -162,6 +165,17 @@ public class BookService {
 								   -> new NotFoundException("Book with given id not found"));
 
         bookRepository.delete(book);
+        return ResponseEntity.ok().build();
+	}
+
+	public ResponseEntity<?> deleteAllBooks() throws NotFoundException{
+			
+		try { 
+			bookRepository.deleteAll();
+		}
+		catch(Exception e) {
+			throw new NotFoundException("Book with given id not found");
+		} 
         return ResponseEntity.ok().build();
 	}
 

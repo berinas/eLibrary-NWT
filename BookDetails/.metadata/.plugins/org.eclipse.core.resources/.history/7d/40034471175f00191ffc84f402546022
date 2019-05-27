@@ -1,6 +1,0 @@
-#google drive api
- google : 
-  service_account_email : orionnwt-242@elibrarynwt.iam.gserviceaccount.com
-  application_name : eLibraryNWT
-  folder_id : 1-TJVj3cRYEb6owL1GuTWE0vjKAz7CEq_
-  service_account_key : elibrarynwt-bcb34b8c8c40.p12

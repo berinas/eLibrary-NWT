@@ -1,6 +1,0 @@
-package etf.unsa.ba.Books.Entities;
-
-public class Publisher {
-	
-	private String name; 
-}

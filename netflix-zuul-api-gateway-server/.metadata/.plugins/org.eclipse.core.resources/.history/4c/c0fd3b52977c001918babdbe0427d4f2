@@ -1,0 +1,17 @@
+spring.application.name=netflix-zuul-api-gateway-server
+server.port=8765
+eureka.client.registerWithEureka=false
+eureka.client.fetchRegistry=true
+eureka.client.service-url.default-zone=http://localhost:8761/eureka
+eureka.instance.prefer-ip-address=true
+logging.level.org.hibernate.SQL=DEBUG
+logging.level.org.hibernate.type=TRACE
+#zuul.routes.user-service.path=/user-service/**
+#zuul.routes.user-service.serviceId=user-service
+##zuul.routes.book-details-service.path=/book-details-service/**
+#zuul.routes.book-details-service.serviceId=book-details-service
+#zuul.routes.books-service.path=/books-service/**
+#zuul.routes.books-service.serviceId=books-service
+#zuul.host.socket-timeout-millis=60000
+#ribbon.ConnectTimeout: 20000
+#ribbon.ReadTimeout=10000

@@ -36,9 +36,9 @@ import etf.unsa.ba.Books.Entities.User;
 import etf.unsa.ba.Books.Entities.UserAccount;
 import etf.unsa.ba.Books.Entities.UserInfo;
 import etf.unsa.ba.Books.Repositories.BookRepository;
-import etf.unsa.ba.Books.Services.BookDetailsServiceProxy;
+import etf.unsa.ba.Books.Services.BookDetailsProxy;
+import etf.unsa.ba.Books.Services.ServiceProxy;
 import etf.unsa.ba.Books.Services.UserService;
-import etf.unsa.ba.Books.Services.UserServiceProxy;
 
 @RestController
 public class UserController {
@@ -47,32 +47,21 @@ public class UserController {
 	@Autowired
     private UserService userService;
 	@Autowired
-	private DiscoveryClient discoveryClient;
+	private ServiceProxy serviceProxy;
 	@Autowired
-	private UserServiceProxy userServiceProxy;
-	@Autowired
-	private BookDetailsServiceProxy bookDetailsServiceProxy; 
+	private BookDetailsProxy bookDetailsProxy;
  
 
-	
 	public UserController(UserService userService){
         this.userService = userService;
     }
 	
-	
-	@RequestMapping("/service-instances/{applicationName}")
-    public List<ServiceInstance> serviceInstancesByApplicationName(
-            @PathVariable String applicationName) {
-        return this.discoveryClient.getInstances(applicationName);
-    }
-	
-
-
 	@PostMapping("/users/login")
 	public UserInfo getUserByUsernameAndPassword(@RequestBody UserAccount userAccount) {
-		UserInfo userInfo = userServiceProxy.getUserByUsernameAndPassword(userAccount);
+		UserInfo userInfo = serviceProxy.getUserByUsernameAndPassword(userAccount);
 		user.setUsername(userInfo.getUsername());
 		user.setPassword(userInfo.getPassword());
+		System.out.println("books-service -> User is logged in");
 		return userInfo; 
 	}
 		
@@ -94,13 +83,14 @@ public class UserController {
 	
 	@GetMapping("/books/{bookId}")
 	public BookDetails getBookDetails(@PathVariable("bookId") Long bookId){
-		BookDetails bookDetails = bookDetailsServiceProxy.getBookDetailsById(bookId);
+		BookDetails bookDetails = bookDetailsProxy.getBookDetailsById(bookId);
+		System.out.println(bookDetails.getPublisher().getName());
 		return 	bookDetails;
 	}
 	
 	@GetMapping("/user/wishlist/{bookId}")
 	public BookDetails getBookDetailsFromWishList(@PathVariable("bookId") Long bookId){
-		return bookDetailsServiceProxy.getBookDetailsById(bookId);
+		return bookDetailsProxy.getBookDetailsById(bookId);
 	}
 	
 	@PostMapping("/user/wishlist/{bookId}")

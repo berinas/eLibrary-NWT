@@ -15,7 +15,9 @@ import etf.unsa.ba.Books.Entities.Book;
 import etf.unsa.ba.Books.Entities.BookDetails;
 import etf.unsa.ba.Books.Entities.Publisher;
 import etf.unsa.ba.Books.Repositories.BookRepository;
-import etf.unsa.ba.Books.Services.BookDetailsServiceProxy;
+import etf.unsa.ba.Books.Services.BookDetailsProxy;
+import etf.unsa.ba.Books.Services.ServiceProxy;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 
@@ -25,7 +27,7 @@ public class TestCommunication {
 
 
 	@Autowired
-	BookDetailsServiceProxy bookDetailsServiceProxy;
+	BookDetailsProxy bookDetailsProxy;
 	@Autowired
 	BookRepository bookRepository;
 	
@@ -34,7 +36,7 @@ public class TestCommunication {
 	public void getBookDetails() {
 		
 		BookDetails bookDetails1 = new BookDetails("History Book","","eng",new Date(),new Publisher((long)1, "izdavac"));
-		BookDetails bookDetails2 = bookDetailsServiceProxy.getBookDetailsById((long)1);
+		BookDetails bookDetails2 = bookDetailsProxy.getBookDetailsById((long)1);
 		
 		assertThat(bookDetails1.getTitle()).isEqualTo(bookDetails2.getTitle());
 	

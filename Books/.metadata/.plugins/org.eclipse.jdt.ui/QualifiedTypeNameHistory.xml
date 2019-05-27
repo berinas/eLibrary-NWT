@@ -53,4 +53,7 @@
 <fullyQualifiedTypeName name="com.fasterxml.jackson.databind.JsonNode"/>
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="lombok.Data"/>
+<fullyQualifiedTypeName name="etf.unsa.ba.Books.Services.ServiceProxy"/>
+<fullyQualifiedTypeName name="etf.unsa.ba.Books.Services.BookDetailsProxy"/>
+<fullyQualifiedTypeName name="org.springframework.cloud.netflix.ribbon.RibbonClient"/>
 </qualifiedTypeNameHistroy>

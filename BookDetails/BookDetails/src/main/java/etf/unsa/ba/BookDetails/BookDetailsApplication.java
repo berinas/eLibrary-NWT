@@ -67,14 +67,14 @@ public class BookDetailsApplication implements CommandLineRunner {
 		sectionRepository.save(new Section(SectionType.MAGAZINE));
 		sectionRepository.save(new Section(SectionType.ARTICLE));
 		
-		Book book = new Book("History Book", "desc", "eng", new Date());
+		/*Book book = new Book("History Book", "desc", "eng", new Date());
 		Category category = categoryRepository.findByCategory(BookCategory.HISTORY);
 		Section section = sectionRepository.findBySection(SectionType.BOOK);
 		
 		book.setCategory(category);
 		book.setSection(section);
 		bookRepository.save(book);
-		/*Author author1 = new Author("Author1", "Author11");
+		Author author1 = new Author("Author1", "Author11");
 		Author author2 = new Author("Author2", "Author22");
 		
 		List<Author> authors = new ArrayList<Author>();
