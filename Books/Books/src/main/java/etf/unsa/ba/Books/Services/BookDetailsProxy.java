@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import etf.unsa.ba.Books.Entities.BookDetails;
 
 @FeignClient(name="book-details-service")
+@RibbonClient(name = "book-details-service")
 public interface BookDetailsProxy {
 
 	@GetMapping("/books/{bookId}")

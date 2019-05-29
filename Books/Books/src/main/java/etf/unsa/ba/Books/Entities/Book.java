@@ -11,6 +11,13 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@RequiredArgsConstructor
 @Entity
 public class Book {
 
@@ -18,6 +25,8 @@ public class Book {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id; 
 	private String title;
+	private String description;
+	private String img; 
 	
 	@ManyToMany(mappedBy="booksWishList", cascade = CascadeType.PERSIST)
 	@JsonIgnore
@@ -36,9 +45,11 @@ public class Book {
 	
 	protected Book() {}
 	
-	public Book(String title) {
+	public Book(String title, String description, String img) {
 		super();
 		this.title = title;
+		this.description = description; 
+		this.img = img; 
 	}
 
 	public Long getId() {
@@ -77,4 +88,21 @@ public class Book {
 		this.usersRead = usersRead;
 	}
 
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
+	
+	
 }

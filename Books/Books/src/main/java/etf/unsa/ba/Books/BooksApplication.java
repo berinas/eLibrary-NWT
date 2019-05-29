@@ -46,8 +46,10 @@ public class BooksApplication implements CommandLineRunner {
 		userRepository.save(new User("User 1", "aaaaa"));
 		userRepository.save(new User("User 2", "bbbbb"));
 		userRepository.save(new User("User 3", "ccccc"));
-		bookRepository.save(new Book("History Book"));
-		bookRepository.save(new Book("Book 2"));
+		bookRepository.save(new Book("History Book", "Description", "https://images-na.ssl-images-amazon.com/images/I/517OihiR00L._SX378_BO1,204,203,200_.jpg"));
+		bookRepository.save(new Book("Science", "Description", "https://images-na.ssl-images-amazon.com/images/I/91ZWb4eerRL.jpg"));
+		bookRepository.save(new Book("Biology", "Description", "https://prodimage.images-bn.com/pimages/9781454910688_p0_v2_s550x406.jpg"));
+		bookRepository.save(new Book("A Diamond in my pocket", "Description", "https://m.media-amazon.com/images/I/91ALtDFdILL._AC_UL654_FMwebp_QL65_.jpg"));
 	}
 	
 	@StreamListener(target = Sink.INPUT)
@@ -56,7 +58,7 @@ public class BooksApplication implements CommandLineRunner {
 		ObjectMapper mapper = new ObjectMapper();
 		JsonNode node = mapper.readTree(book);
 		String title = node.get("title").asText();
-		bookRepository.save(new Book(title));
+		bookRepository.save(new Book(title, "Description", ""));
 		System.out.println("Book Registered by Client: " + title);
 	}
 		

@@ -1,5 +1,6 @@
 package etf.unsa.ba.Books.Services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,5 +66,8 @@ public class UserService {
 		return bookRepository.save(book);
 	}
 	
+	public List<Book> getAllTitles(){
+		return bookRepository.findAll();
+	}
 	
 }

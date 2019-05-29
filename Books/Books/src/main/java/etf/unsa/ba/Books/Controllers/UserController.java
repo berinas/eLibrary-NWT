@@ -65,7 +65,11 @@ public class UserController {
 		return userInfo; 
 	}
 		
- 
+	@GetMapping("/all-books")
+	public List<Book> getAllTitles(){
+		return userService.getAllTitles();
+	}
+	
 	@GetMapping("/user/wishlist")
 	public List<Book> getWishList(){
 		return user.getBooksWishList();

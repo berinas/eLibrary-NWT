@@ -11,8 +11,8 @@ import etf.unsa.ba.Books.Entities.BookDetails;
 import etf.unsa.ba.Books.Entities.UserAccount;
 import etf.unsa.ba.Books.Entities.UserInfo;
 
-@FeignClient(name="netflix-zuul-api-gateway-server")
-//@FeignClient(name="user-service")
+//@FeignClient(name="netflix-zuul-api-gateway-server")
+@FeignClient(name="user-service")
 @RibbonClient(name = "user-service")
 public interface ServiceProxy {
 
