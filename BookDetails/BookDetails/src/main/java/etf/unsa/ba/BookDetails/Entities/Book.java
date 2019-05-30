@@ -36,7 +36,6 @@ public class Book {
 	private String language; 
 	private Date published; 
 	
-
 	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "content_id", referencedColumnName = "id")
 	private BookContent bookContent; 
