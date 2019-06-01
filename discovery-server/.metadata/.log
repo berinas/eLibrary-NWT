@@ -8898,3 +8898,15 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 
 !ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-05-27 16:08:24.612
 !MESSAGE executing callback sts4.classpath.jmVJoPyl SUCCESS [done]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-06-01 03:35:17.519
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.jmVJoPyl
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-06-01 03:35:17.574
+!MESSAGE unsubscribing from classpath changes: sts4.classpath.jmVJoPyl
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-06-01 03:35:17.584
+!MESSAGE subsribers = null
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-06-01 03:35:17.592
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.jmVJoPyl => OK

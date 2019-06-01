@@ -6106,3 +6106,15 @@ java.lang.NullPointerException
 
 !ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-05-27 15:47:16.929
 !MESSAGE executing callback sts4.classpath.OBnclCZo SUCCESS [done]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-06-01 03:34:42.886
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.OBnclCZo
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-06-01 03:34:42.928
+!MESSAGE unsubscribing from classpath changes: sts4.classpath.OBnclCZo
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-06-01 03:34:42.948
+!MESSAGE subsribers = null
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-06-01 03:34:42.966
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.OBnclCZo => OK
