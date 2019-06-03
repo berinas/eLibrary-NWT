@@ -1,5 +1,0 @@
-spring.jackson.date-format=yyyy-MM-dd
-spring.jpa.show-sql = true
-spring.h2.console.enabled = true
-server.port = 8081
-
