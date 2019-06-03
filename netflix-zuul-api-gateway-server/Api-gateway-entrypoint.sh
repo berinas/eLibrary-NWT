@@ -4,4 +4,4 @@ while ! nc -z discovery-server 8761 ; do
     sleep 3
 done
 
-java -jar /opt/netflix-zuul-api-gateway-server-0.0.1-SNAPSHOT.jar
+java -jar /opt/api-gateway-0.0.1-SNAPSHOT.jar

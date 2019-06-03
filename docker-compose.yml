@@ -1,87 +1,90 @@
 version: '3'
 services:
-    discovery-server:
-        container_name: discovery-server
-        build:
-            context: discovery-server
-            dockerfile: Dockerfile
-        image: 'discovery-server:0.0.1-SNAPSHOT'
-        expose:
-            - 8761
-        ports:
-            - '8761:8761'
-        networks:
-            - emp-network
-    BookDetails:
-        container_name: BookDetails
-        build:
-            context: BookDetails
-            dockerfile: Dockerfile
-            args: {rabbithost: 192.168.99.100}
-        image: 'BookDetails:0.0.1-SNAPSHOT'
-        entrypoint: /opt/BookDetails-entrypoint.sh
-        expose:
-            - 8082
-        ports:
-            - '8082:8082'
-        networks:
-            - emp-network
-        links:
-            - 'discovery-server:discovery-server'
-        depends_on:
-            - discovery-server
-    User:
-        container_name: User
-        build:
-            context: User
-            dockerfile: Dockerfile
-            args: {rabbithost: 192.168.99.100}
-        image: 'User:0.0.1-SNAPSHOT'
-        entrypoint: /opt/User-entrypoint.sh
-        expose:
-            - 8081
-        ports:
-            - '8081:8081'
-        networks:
-            - emp-network
-        links:
-            - 'discovery-server:discovery-server'
-        depends_on:
-            - discovery-server
-    Books:
-        container_name: Books
-        build:
-            context: Books
-            dockerfile: Dockerfile
-            args: {rabbithost: 192.168.99.100}
-        image: 'Books:0.0.1-SNAPSHOT'
-        entrypoint: /opt/Books-entrypoint.sh
-        expose:
-            - 8083
-        ports:
-            - '8083:8083'
-        networks:
-            - emp-network
-        links:
-            - 'discovery-server:discovery-server'
-        depends_on:
-            - discovery-server
-    netflix-zuul-api-gateway-server:
-        container_name: netflix-zuul-api-gateway-server
-        build:
-            context: netflix-zuul-api-gateway-server
-            dockerfile: Dockerfile
-        image: 'netflix-zuul-api-gateway-server:0.0.1-SNAPSHOT'
-        expose:
-            - 8765
-        ports:
-            - '8765:8765'
-        networks:
-            - emp-network
-        links:
-            - 'discovery-server:discovery-server'
-        depends_on:
-            - discovery-server
+  discovery-server:
+    container_name: discovery-server
+    build:
+      context: discovery-server
+      dockerfile: Dockerfile
+    image: discovery-server:0.0.1-SNAPSHOT
+    expose:
+      - 8761
+    ports:
+      - 8761:8761
+    networks:
+      - emp-network
+  User:
+    container_name: User
+    build:
+      context: User
+      dockerfile: Dockerfile
+      args:
+        rabbithost: '192.168.99.100'
+    image: user:0.0.1-SNAPSHOT
+    entrypoint: /opt/User-entrypoint.sh
+    expose:
+      - 8081
+    ports:
+      - 8081:8081
+    networks:
+      - emp-network
+    links:
+      - discovery-server:discovery-server
+    depends_on:
+      - discovery-server
+  BookDetails:
+    container_name: BookDetails
+    build:
+      context: BookDetails
+      dockerfile: Dockerfile
+      args:
+        rabbithost: '192.168.99.100'
+    image: book-details:0.0.1-SNAPSHOT
+    entrypoint: /opt/BookDetails-entrypoint.sh
+    expose:
+      - 8082
+    ports:
+      - 8082:8082
+    networks:
+      - emp-network
+    links:
+      - discovery-server:discovery-server
+    depends_on:
+      - discovery-server
+  Books:
+    container_name: Books
+    build:
+      context: Books
+      dockerfile: Dockerfile
+      args:
+        rabbithost: '192.168.99.100'
+    image: books:0.0.1-SNAPSHOT
+    entrypoint: /opt/Books-entrypoint.sh
+    expose:
+      - 8083
+    ports:
+      - 8088:8083
+    networks:
+      - emp-network
+    links:
+      - discovery-server:discovery-server
+    depends_on:
+      - discovery-server
+  netflix-zuul-api-gateway-server:
+    container_name: netflix-zuul-api-gateway-server
+    build:
+      context: netflix-zuul-api-gateway-server
+      dockerfile: Dockerfile
+    image: api-gateway:0.0.1-SNAPSHOT
+    expose:
+      - 8765
+    ports:
+      - 8765:8765
+    networks:
+      - emp-network
+    links:
+      - discovery-server:discovery-server
+    depends_on:
+      - discovery-server
 networks:
-    emp-network:
-        driver: bridge
+  emp-network:
+    driver: bridge
