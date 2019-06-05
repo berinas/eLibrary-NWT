@@ -1,21 +1,20 @@
 package etf.unsa.ba.BookDetails;
 
-import java.io.File;
-import java.io.IOException;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import etf.unsa.ba.BookDetails.Services.GoogleDriveService;
 
 @RunWith(SpringRunner.class)
-@SpringBootApplication
-public class TestUpload {
+@SpringBootTest
+public class BookDetailsApplicationTests {
 
-	
+	@Test
+	public void contextLoads() {
+	}
 	@Autowired
 	GoogleDriveService driveService;
 	

@@ -1,5 +1,6 @@
 version: '3'
 services:
+
   discovery-server:
     container_name: discovery-server
     build:
@@ -18,7 +19,10 @@ services:
       context: User
       dockerfile: Dockerfile
       args:
-        rabbithost: '192.168.99.100'
+        dburl: 'jdbc:mysql://10.0.75.1:3306/user_db?characterEncoding=UTF-8&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC'
+        dbuser: 'root'
+        dbpass: 'orion12345678'
+        rabbithost: '10.0.75.1'
     image: user:0.0.1-SNAPSHOT
     entrypoint: /opt/User-entrypoint.sh
     expose:
@@ -37,7 +41,10 @@ services:
       context: BookDetails
       dockerfile: Dockerfile
       args:
-        rabbithost: '192.168.99.100'
+        dburl: 'jdbc:mysql://10.0.75.1:3306/book_details_db?characterEncoding=UTF-8&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC'
+        dbuser: 'root'
+        dbpass: 'orion12345678'
+        rabbithost: '10.0.75.1'
     image: book-details:0.0.1-SNAPSHOT
     entrypoint: /opt/BookDetails-entrypoint.sh
     expose:
@@ -56,7 +63,10 @@ services:
       context: Books
       dockerfile: Dockerfile
       args:
-        rabbithost: '192.168.99.100'
+        dburl: 'jdbc:mysql://10.0.75.1:3306/user_book_db?characterEncoding=UTF-8&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC'
+        dbuser: 'root'
+        dbpass: 'orion12345678'
+        rabbithost: '10.0.75.1'
     image: books:0.0.1-SNAPSHOT
     entrypoint: /opt/Books-entrypoint.sh
     expose:

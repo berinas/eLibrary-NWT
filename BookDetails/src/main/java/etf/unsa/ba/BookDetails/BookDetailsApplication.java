@@ -94,7 +94,7 @@ public class BookDetailsApplication implements CommandLineRunner {
 		authorRepository.save(author2); */
 		
 	}
-
+	
 	
 	@Bean
     @Primary
