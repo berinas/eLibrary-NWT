@@ -75,6 +75,7 @@ services:
       context: netflix-zuul-api-gateway-server
       dockerfile: Dockerfile
     image: api-gateway:0.0.1-SNAPSHOT
+    entrypoint: /opt/Api-gateway-entrypoint.sh
     expose:
       - 8765
     ports:
