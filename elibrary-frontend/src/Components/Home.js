@@ -19,7 +19,7 @@ class Home extends Component {
   componentDidMount() {
     this.setState({isLoading: true});
 
-    fetch("books-service/all-books")
+    fetch("user-book/all-books")
       .then(response => response.json())
       .then(data => this.setState({books: data, isLoading: false}));
   }

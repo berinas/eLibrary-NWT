@@ -57,17 +57,19 @@ public class User {
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JsonIgnore
 	private UserRole userRole;
+	private String role;
 	
 	
 	protected User() {}
 	
-	public User(String firstName, String lastName, String email, String username, String password) {
+	public User(String firstName, String lastName, String email, String username, String password, String role) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.username = username; 
 		this.password = password; 
+		this.role = role;
 	}
 
 	public Long getId() {
@@ -120,6 +122,15 @@ public class User {
 
 	public void setUserRole(UserRole userRole) {
 		this.userRole = userRole;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	} 
+	
 	
 }

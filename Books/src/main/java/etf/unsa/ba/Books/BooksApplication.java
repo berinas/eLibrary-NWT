@@ -18,9 +18,12 @@ import etf.unsa.ba.Books.Entities.Book;
 import etf.unsa.ba.Books.Entities.User;
 import etf.unsa.ba.Books.Repositories.BookRepository;
 import etf.unsa.ba.Books.Repositories.UserRepository;
+import etf.unsa.ba.Books.Services.UserService;
+
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.cloud.stream.messaging.Sink;
+import org.springframework.messaging.Message;
 
 @SpringBootApplication
 @EnableAutoConfiguration
@@ -33,6 +36,8 @@ public class BooksApplication implements CommandLineRunner {
 	UserRepository userRepository; 
 	@Autowired
 	BookRepository bookRepository;
+	@Autowired
+	UserService userService;
 	
 	
 	public static void main(String[] args) {
@@ -53,13 +58,27 @@ public class BooksApplication implements CommandLineRunner {
 	}
 	
 	@StreamListener(target = Sink.INPUT)
-	public void processRegisterBooks(String book) throws IOException{
+	public void processRegisterBooks(Message<String> message) throws IOException{
 		
-		ObjectMapper mapper = new ObjectMapper();
-		JsonNode node = mapper.readTree(book);
-		String title = node.get("title").asText();
-		bookRepository.save(new Book(title, "Description", ""));
-		System.out.println("Book Registered by Client: " + title);
+		if(message.getHeaders().get("type").toString().equals("USER")) {
+			
+			ObjectMapper mapper = new ObjectMapper();
+			JsonNode node = mapper.readTree(message.getPayload());
+			String username = node.get("username").asText();
+			String password = node.get("password").asText();
+			userService.userLogin(username,password);
+			System.out.println("User is logged in: " + username + " " + password);
+			
+		}
+		else if (message.getHeaders().get("type").toString().equals("BOOK")) {
+
+			ObjectMapper mapper = new ObjectMapper();
+			JsonNode node = mapper.readTree(message.getPayload());
+			String title = node.get("title").asText();
+			bookRepository.save(new Book(title, "Description", ""));
+			System.out.println("Book Registered by Client: " + title);
+		}
+		
 	}
 		
 }

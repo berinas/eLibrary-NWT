@@ -6,9 +6,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.http.ResponseEntity;
+import org.springframework.integration.support.MessageBuilder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.MultiValueMap;
@@ -17,12 +19,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import etf.unsa.ba.User.Entities.User;
 import etf.unsa.ba.User.Entities.UserAccount;
+import etf.unsa.ba.User.Entities.UserLoginSource;
 import etf.unsa.ba.User.Exceptions.CredentialsException;
 import etf.unsa.ba.User.Exceptions.UserNotFoundException;
 import etf.unsa.ba.User.Repositories.UserRepository;
 import etf.unsa.ba.User.Repositories.UserRoleRepository;
 
 @Service
+@EnableBinding(UserLoginSource.class)
 public class UserService {
 
 	
@@ -32,6 +36,9 @@ public class UserService {
 	UserRoleRepository userRoleRepository;
 	@Autowired
 	BCryptPasswordEncoder bCryptPasswordEncoder;
+	@Autowired
+    UserLoginSource userLoginSource;
+	
 	
 	@Autowired
 	public UserService(UserRepository userRepository,
@@ -148,6 +155,14 @@ public class UserService {
     	Matcher matcher = pattern.matcher(email);
         return matcher.matches();
     }
+
+
+	public void saveAndSendUserInfo(String username, String password) {
+		
+		UserAccount acc = new UserAccount(username, password);
+       userLoginSource.userLogin().send(MessageBuilder.withPayload(acc).setHeader("type", "USER").build());
+
+	}
 
     
 }
