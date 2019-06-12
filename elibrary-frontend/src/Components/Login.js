@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Bootstrap from "react-bootstrap";
+import './Login.css';
+
+import NavigationBar  from './NavigationBar';
+import VerticalNavbar from './VerticalNavbar';
 
 export default class Login extends Component {
     constructor(props) {
@@ -29,8 +33,10 @@ export default class Login extends Component {
 
     render() {
     return (
+        <div><NavigationBar />
+            <VerticalNavbar />
+            <Form onSubmit={this.handleSubmit} className="login-form">
 
-            <Form onSubmit={this.handleSubmit}>
             <Form.Group controlId="formBasicUsername" bsSize="large">
                 <Form.Label>Username</Form.Label>
                 <Form.Control
@@ -42,17 +48,18 @@ export default class Login extends Component {
             </Form.Group>
 
             <Form.Group controlId="formBasicPassword">
-                <Form.Label>Password</Form.Label>
+                <Form.Label >Password</Form.Label>
                 <Form.Control
                 value={this.state.password}
                 onChange={this.handleChange}
                 type="password"
             />
             </Form.Group>
-            <Button variant="primary" type="submit" disabled={!this.validateForm()}>
-                Login
+            <Button className="loginBtn" variant="success" type="submit" disabled={!this.validateForm()}>
+                LOG IN
             </Button>
             </Form>
+            </div>
     );
     }
 }

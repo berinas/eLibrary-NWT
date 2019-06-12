@@ -16,10 +16,10 @@ class NavigationBar extends Component {
                     <Nav.Item><Nav.Link href="/search/section/BOOK">BOOKS</Nav.Link></Nav.Item>
                     <Nav.Item><Nav.Link href="/search/section/ARTICLE">ARTICLES</Nav.Link></Nav.Item>
                     <Nav.Item><Nav.Link href="/search/section/MAGAZINE">MAGAZINES</Nav.Link></Nav.Item>
+                    <Nav.Item><Nav.Link href="/users">USERS</Nav.Link></Nav.Item>
                 </Nav>
                 <Nav className="ml-auto">
-                    <Nav.Item><Nav.Link href="/login" >LOGIN</Nav.Link></Nav.Item>
-                    <Nav.Item><Nav.Link href="/register">REGISTER</Nav.Link></Nav.Item>
+                    <Nav.Item><Nav.Link href="/home" >LOG OUT</Nav.Link></Nav.Item>
 
                 </Nav>
                 <Nav>&nbsp;</Nav>

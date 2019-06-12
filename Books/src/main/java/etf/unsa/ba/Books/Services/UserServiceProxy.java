@@ -14,9 +14,10 @@ import etf.unsa.ba.Books.Entities.UserInfo;
 //@FeignClient(name="netflix-zuul-api-gateway-server")
 @FeignClient(name="user-service")
 @RibbonClient(name = "user-service")
-public interface ServiceProxy {
+public interface UserServiceProxy {
 
 	//@PostMapping("/user-service/users/login")
 	@PostMapping("/users/login")
 	public UserInfo getUserByUsernameAndPassword(@RequestBody UserAccount userAccount);	
+	
 }

@@ -8,29 +8,28 @@ import VerticalNavbar from './Components/VerticalNavbar';
 import Home  from './Components/Home';
 import Login from './Components/Login';
 import Register from './Components/Register';
+import AdminHome from './Components/AdminHome';
+import Users from './Components/Users';
 
 import BookList  from './Components/BookList';
 
 function App() {
   return (
-      <React.Fragment>
-        <NavigationBar />
-        <VerticalNavbar />
-        <Layout>
+
           <Router>
             <Switch>
-              
               <Route path ="/search/:type/:name" component={BookList} />
               <Route path ="/about" component={About} />
               <Route path ="/home" component={Home}/>
               <Route path ="/login" component={Login} />
               <Route path ="/register" component={Register} />
-              <Route path ="/" component={Home}/>
+              <Route exact path ="/" component={Home}/>
+              <Route path ="/admin_home" component={AdminHome}/>
+              <Route path ="/users" component={Users}/>
+
               <Route component={NotFound} />
             </Switch>
           </Router>
-        </Layout>
-      </React.Fragment>
   );
 }
 

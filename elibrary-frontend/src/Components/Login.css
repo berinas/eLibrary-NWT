@@ -1,0 +1,14 @@
+.login-form{
+  margin: auto;
+  margin-top: 3rem;
+  width: 20rem;
+}
+div{
+}
+.loginBtn:hover{
+  background-color: black;
+}
+.loginBtn{
+  width: 100%;
+  margin-top: 1rem;
+}

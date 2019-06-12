@@ -38,21 +38,22 @@ public class UserApplication {
 									   BCryptPasswordEncoder bCryptPasswordEncoder) {
 		return (args) -> {
 			
-			User ekrem = new User("Ekrem","Hasanovic","ekremh@gmail.com","ekrem", bCryptPasswordEncoder.encode("11111111"));
-			User berina = new User("Berina","Smajovic", "berinas@gmail.com","berina",bCryptPasswordEncoder.encode("22222222"));
-			User jasmina = new User("Jasmina","Celigija", "jasminac@gmail.com","jasmina", bCryptPasswordEncoder.encode("33333333"));
+			User administrator = new User("Admin","Admin","admin@gmail.com","admin", bCryptPasswordEncoder.encode("00000000"),"ADMIN");
+			User ekrem = new User("Ekrem","Hasanovic","ekremh@gmail.com","ekrem", bCryptPasswordEncoder.encode("11111111"),"USER");
+			User berina = new User("Berina","Smajovic", "berinas@gmail.com","berina",bCryptPasswordEncoder.encode("22222222"),"USER");
+			User jasmina = new User("Jasmina","Celigija", "jasminac@gmail.com","jasmina", bCryptPasswordEncoder.encode("33333333"),"USER");
 			
 			UserRole admin = new UserRole(UserRole.Role.ADMIN); 
 			UserRole user = new UserRole(UserRole.Role.USER); 
 			userRoleRepository.save(admin);
 			userRoleRepository.save(user);
 			
-			
+			administrator.setUserRole(admin);
 			ekrem.setUserRole(user);
 			berina.setUserRole(user);
 			jasmina.setUserRole(user);
 
-		
+			userRepository.save(administrator);
 			userRepository.save(ekrem);
 			userRepository.save(berina);
 			userRepository.save(jasmina);

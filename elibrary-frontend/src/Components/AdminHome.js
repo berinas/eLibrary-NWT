@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { CardGroup, Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-import NavigationBar  from './NavigationBar';
+import AdminNavigationBar  from './AdminNavigationBar';
 import VerticalNavbar from './VerticalNavbar';
 import './Home.css';
 
 
 
-class Home extends Component {
+class AdminHome extends Component {
 
   constructor(props) {
     super(props);
@@ -42,9 +42,9 @@ class Home extends Component {
       return(
 
             <div className='card'>
-              <NavigationBar />
-                <VerticalNavbar />
-             <CardGroup>
+            <AdminNavigationBar />
+              <VerticalNavbar />
+            <CardGroup>
                   {
                       this.state.books.map((book) => {
                           return (
@@ -74,4 +74,4 @@ class Home extends Component {
 
 }
 
-export default Home;
+export default AdminHome;

@@ -2,13 +2,17 @@ import React, { Component } from "react";
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Bootstrap from "react-bootstrap";
+import './Register.css'
+
+import NavigationBar  from './NavigationBar';
+import VerticalNavbar from './VerticalNavbar';
 
 export default class Login extends Component {
     constructor(props) {
     super(props);
 
     this.state = {
-        firstName:"", 
+        firstName:"",
         lastName: "",
         username: "",
         email: "",
@@ -32,8 +36,9 @@ export default class Login extends Component {
 
     render() {
     return (
-
-            <Form onSubmit={this.handleSubmit}>
+      <div> <NavigationBar />
+            <VerticalNavbar />
+            <Form onSubmit={this.handleSubmit} className="register-form">
                  <Form.Group controlId="formBasicFirstName" bsSize="large">
                     <Form.Label>First name</Form.Label>
                     <Form.Control
@@ -68,9 +73,9 @@ export default class Login extends Component {
                 onChange={this.handleChange}
                 type="password"
                  />
-                <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
-                </Form.Text>
+                 <Form.Text className="text-muted">
+                 Password must contain at least 6 characters.
+                 </Form.Text>
                 </Form.Group>
                 <Form.Group controlId="formBasicConfirmPassword">
                 <Form.Label>Confirm password</Form.Label>
@@ -80,10 +85,11 @@ export default class Login extends Component {
                  />
                 </Form.Group>
 
-            <Button variant="primary" type="submit" disabled={!this.validateForm()}>
-                Register
+            <Button className="registerBtn" variant="danger" type="submit" disabled={!this.validateForm()}>
+                REGISTER
             </Button>
             </Form>
+      </div>
     );
     }
 }
