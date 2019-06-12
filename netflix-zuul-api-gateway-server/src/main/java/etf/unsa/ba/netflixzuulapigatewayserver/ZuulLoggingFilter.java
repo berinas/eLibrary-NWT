@@ -37,7 +37,7 @@ public class ZuulLoggingFilter extends ZuulFilter {
 	@Override
 	public int filterOrder() {
 		
-		return 10000;
+		return 1;
 	}
 
 }

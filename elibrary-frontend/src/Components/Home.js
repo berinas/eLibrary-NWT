@@ -41,10 +41,7 @@ class Home extends Component {
   render(){
       return(
 
-            <div className='card'>
-              <NavigationBar />
-                <VerticalNavbar />
-             <CardGroup>
+            <div className='card'>  <CardGroup>
                   {
                       this.state.books.map((book) => {
                           return (

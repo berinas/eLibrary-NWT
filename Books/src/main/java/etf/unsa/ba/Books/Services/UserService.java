@@ -18,7 +18,6 @@ public class UserService {
 	UserRepository userRepository;
 	@Autowired
 	BookRepository bookRepository;
-	User user = new User();
 	
 	@Autowired 
 	public UserService(UserRepository userRepository,
@@ -69,11 +68,6 @@ public class UserService {
 	
 	public List<Book> getAllTitles(){
 		return bookRepository.findAll();
-	}
-	
-	public void userLogin(String username, String password) {
-		user.setUsername(username);
-		user.setPassword(password);
 	}
 	
 }

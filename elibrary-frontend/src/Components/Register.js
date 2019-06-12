@@ -4,9 +4,6 @@ import Button from 'react-bootstrap/Button'
 import Bootstrap from "react-bootstrap";
 import './Register.css'
 
-import NavigationBar  from './NavigationBar';
-import VerticalNavbar from './VerticalNavbar';
-
 export default class Login extends Component {
     constructor(props) {
     super(props);
@@ -36,8 +33,7 @@ export default class Login extends Component {
 
     render() {
     return (
-      <div> <NavigationBar />
-            <VerticalNavbar />
+
             <Form onSubmit={this.handleSubmit} className="register-form">
                  <Form.Group controlId="formBasicFirstName" bsSize="large">
                     <Form.Label>First name</Form.Label>
@@ -73,9 +69,9 @@ export default class Login extends Component {
                 onChange={this.handleChange}
                 type="password"
                  />
-                 <Form.Text className="text-muted">
-                 Password must contain at least 6 characters.
-                 </Form.Text>
+                <Form.Text className="text-muted">
+                We'll never share your email with anyone else.
+                </Form.Text>
                 </Form.Group>
                 <Form.Group controlId="formBasicConfirmPassword">
                 <Form.Label>Confirm password</Form.Label>
@@ -89,7 +85,6 @@ export default class Login extends Component {
                 REGISTER
             </Button>
             </Form>
-      </div>
     );
     }
 }

@@ -4,9 +4,6 @@ import Button from 'react-bootstrap/Button'
 import Bootstrap from "react-bootstrap";
 import './Login.css';
 
-import NavigationBar  from './NavigationBar';
-import VerticalNavbar from './VerticalNavbar';
-
 export default class Login extends Component {
     constructor(props) {
     super(props);
@@ -33,10 +30,8 @@ export default class Login extends Component {
 
     render() {
     return (
-        <div><NavigationBar />
-            <VerticalNavbar />
-            <Form onSubmit={this.handleSubmit} className="login-form">
 
+            <Form onSubmit={this.handleSubmit} className="login-form">
             <Form.Group controlId="formBasicUsername" bsSize="large">
                 <Form.Label>Username</Form.Label>
                 <Form.Control
@@ -59,7 +54,6 @@ export default class Login extends Component {
                 LOG IN
             </Button>
             </Form>
-            </div>
     );
     }
 }

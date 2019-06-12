@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import { CardGroup, Card, Button } from 'react-bootstrap';
+import { CardGroup, Card, Button } from 'react-bootstrap'; 
 import { Link } from 'react-router-dom';
-
-import NavigationBar  from './NavigationBar';
-import VerticalNavbar from './VerticalNavbar';
 
 class BookList extends Component {
 
@@ -37,8 +34,6 @@ class BookList extends Component {
 
   render(){
       return(
-        <div><NavigationBar />
-            <VerticalNavbar />
               <CardGroup>
                   {
                       this.state.books.map((book) => {
@@ -59,8 +54,7 @@ class BookList extends Component {
                             )
                       })
                   }
-              </CardGroup>
-              </div>
+              </CardGroup> 
       );
   }
 
